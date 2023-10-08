@@ -1,0 +1,34 @@
+<section>
+  <h1 class="text-main fs-2">Payment-Info</h1>
+  <form [formGroup]="shippingAddress">
+    <div class="mb-3">
+      <label for="details">details</label>
+      <input formControlName="details" type="text" class="form-control mb-1 p-2"/>
+  <div *ngIf="shippingAddress.get('details')?.errors && shippingAddress.get('details')?.touched" class="alert alert-danger">
+    <p *ngIf="shippingAddress.get('details')?.getError('required')" >address is required</p>
+    <p *ngIf="shippingAddress.get('details')?.getError('maxlength')?.touched">address is maxlenght </p>
+  </div>
+    </div>
+
+    <div class="mb-3">
+    <label for="phone">phone</label>
+    <input formControlName="phone" type="text" class="form-control mb-1  p-2"/>
+    <div *ngIf="shippingAddress.get('phone')?.errors && shippingAddress.get('phone')?.touched" class="alert alert-danger">
+      <p *ngIf="shippingAddress.get('phone')?.getError('required')" >phone is required</p>
+      <p *ngIf="shippingAddress.get('phone')?.getError('pattern')">formate of phone is not matched </p>
+    </div>
+</div>
+
+<div class="mb-3">
+    <label for="city">city</label>
+    <input formControlName="city" type="text" class="form-control mb-1  p-2"/>
+
+    <div *ngIf="shippingAddress.get('city')?.errors && shippingAddress.get('city')?.touched" class="alert alert-danger">
+      <p *ngIf="shippingAddress.get('city')?.getError('required')" >city is required</p>
+      <p *ngIf="shippingAddress.get('city')?.getError('maxlength')?.touched">city is maxlenght </p>
+    </div>
+    </div>
+
+    <button (click)="goToPayment(shippingAddress)" type="submit" class="btn bg-main text-white m-auto">submit</button>
+  </form>
+</section>

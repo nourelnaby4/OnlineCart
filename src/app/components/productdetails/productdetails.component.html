@@ -1,0 +1,47 @@
+<p-toast position="bottom-right"></p-toast>
+
+<p-toast position="bottom-right"></p-toast>
+<div class="row d-flex py-4 align-items-center">
+  <div class="col-md-4">
+    <!-- <owl-carousel-o [options]="customOptions">
+
+      <ng-container *ngFor="let img of ProductDetails.images">
+        <ng-template carouselSlide >
+          <img [src]="img" >
+        </ng-template>
+      </ng-container>
+
+    </owl-carousel-o> -->
+
+    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="3000" *ngFor="let img of ProductDetails.images">
+          <img [src]="img" class="d-block w-100" alt="">
+        </div>
+
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <h2 clas="h4 mb-2 fw-bolder">{{ ProductDetails?.title }}</h2>
+    <p clas="p-3 text-muted">{{ ProductDetails?.description }}</p>
+    <div class="d-flex justify-content-between">
+      <span class="text-muted font-sm">{{ ProductDetails.price }} EGY</span>
+      <div>
+        <i class="fas fa-star font-sm rating-colr"></i>
+        <span class="text-muted font-sm">{{
+          ProductDetails.ratingsAverage
+        }}</span>
+      </div>
+    </div>
+    <button (click)="addToCart(ProductDetails._id)" class="btn bg-main text-white my-2 w-100">Add +</button>
+  </div>
+</div>

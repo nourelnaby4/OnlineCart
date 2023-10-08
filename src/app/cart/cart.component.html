@@ -1,0 +1,42 @@
+<p-toast position="bottom-right"></p-toast>
+<section>
+  <h1 class="m-3 p-2 text-main">Cart Section</h1>
+<div *ngIf="productCart.length>0 else showNoData">
+  <div class="row d-flex align-items-center bg-light m-2 py-1"   *ngFor="let product of productCart">
+    <div class="col-md-1">
+        <img class="card-img-top" [src]="product.product.imageCover" alt="Title">
+
+      </div>
+      <div class="col-md-9">
+
+          <h4>{{product.product.title}}</h4>
+          <h4 class="h6 text-muted">{{product.product.category.name}}</h4>
+          <h4 class="h6 text-main">{{product.price | currency}}</h4>
+        <div class="my-3 d-flex justify-content-between" >
+
+          <div class="d-flex justify-content-end align-items-center">
+            <button (click)="updateCount(product.product._id,product.count+1)" class="btn btn-outline-primary mx-1 p-1">+</button>
+            <h4 class="h6 text-main mx-2">{{product.count}}</h4>
+            <button [disabled]="product.count===0"  (click)="updateCount(product.product._id,product.count-1)"  class="btn btn-outline-danger mx-1 p-1">-</button>
+           </div>
+          <div>
+            <button (click)="deleteCartItem(product.product._id)" class="btn btn-outline-danger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+              <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
+              <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
+            </svg></button>
+          </div>
+
+        </div>
+        </div>
+    </div>
+
+    <button routerLink="/cart/payment" class="btn bg-main text-white m-3">Payment Online</button>
+
+</div>
+
+</section>
+<ng-template #showNoData>
+  <div class="alert alert-warning">
+    <span>there are no items yet!</span>
+  </div>
+</ng-template>

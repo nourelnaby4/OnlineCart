@@ -1,0 +1,34 @@
+<p-toast position="bottom-right"></p-toast>
+<!-- <app-carousel [Categories]="Categories"></app-carousel> -->
+<div class="row">
+  <input type="text"[(ngModel)]="search"placeholder="search by name...."class="form-control my-2 mx-auto px-3 py-2"/>
+</div>
+<div class="row">
+  <div *ngFor="let item of productsDto | search : search" class="col-md-2">
+    <div class="product px-2 py-4">
+      <a [routerLink]="['/productdetails', item._id]">
+        <img src="{{ item.imageCover }}" class="w-100" />
+      </a>
+        <div class="d-flex justify-content-between align-items-center">
+          <span class="text-main font-sm">{{ item.category.name }}</span>
+         <div>
+          <button class="btn" *ngIf="!item.isWishLsited" (click)="addWishlist(item._id)"  > <i class="fa-regular fa-heart"></i></button>
+          <button class="btn" *ngIf="item.isWishLsited" (click)="deleteWishlist(item._id)" > <i class="fa-solid fa-heart"></i></button>
+         </div>
+        </div>
+
+        <h3 class="h6 fw-bolder mt-2">
+          {{ item.title.split(" ").slice(0, 2).join(" ") }}
+        </h3>
+        <div class="d-flex justify-content-between">
+          <span class="text-muted font-sm">{{ item.price }} EGY</span>
+          <div>
+            <i class="fas fa-star font-sm rating-colr"></i>
+            <span class="text-muted font-sm">{{ item.ratingsAverage }}</span>
+          </div>
+        </div>
+
+      <button (click)="addCart(item._id)"class="btn-main bg-main text-white my-2 w-100 rounded btn">Add +</button>
+    </div>
+  </div>
+</div>

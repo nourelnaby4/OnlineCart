@@ -1,0 +1,28 @@
+<section class="container">
+  <h1>Login:</h1>
+  <div *ngIf="ErrorMessage" class="alert alert-danger">
+    <p>{{ErrorMessage}}</p>
+      </div>
+  <form [formGroup]="loginForm" (ngSubmit)="submitlogin(loginForm)">
+    <div class="mb-3">
+      <label for="name">email</label>
+      <input id="email" formControlName="email" class="form-control" />
+      <div *ngIf="loginForm.get('email')?.errors && loginForm.get('email')?.touched" class="alert alert-danger">
+        <p *ngIf="loginForm.get('email')?.getError('required')">email is required</p>
+        <p *ngIf="loginForm.get('email')?.getError('email')">email validation is mistake</p>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="password">password</label>
+      <input type="password" id="password" formControlName="password" class="form-control" />
+      <div class="alert alert-danger" *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched">
+        <p *ngIf="loginForm.get('password')?.getError('required')">password is required</p>
+      </div>
+    </div>
+
+    <button *ngIf="!isLoading" [disabled]="!loginForm.valid" class="btn d-block bg-main ms-auto text-white border-0">submit</button>
+    <button *ngIf="isLoading" class="btn d-block bg-main ms-auto text-white border-0" type="button" disabled>
+      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    </button>
+  </form>
+</section>
