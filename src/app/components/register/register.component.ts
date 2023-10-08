@@ -6,7 +6,7 @@ import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
   isLoading: boolean = false;
@@ -50,8 +50,8 @@ export class RegisterComponent implements OnInit {
         },
         error: (err) => {
           console.log(err)
-          console.log("error"),
-            this.isLoading = false
+          this.ErrorMessage=err.error.message
+          this.isLoading=false
 
         },
         complete: () => {

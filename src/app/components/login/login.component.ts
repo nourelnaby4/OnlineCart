@@ -24,7 +24,7 @@ export class LoginComponent {
       this._auth.login(this.loginForm.value).subscribe({
         next: (reponse) => {
           if (reponse.message == 'success') {
-            console.log("login");
+
             localStorage.setItem('userToken', reponse.token);
             this._auth.decodeUserData();
             this.isLoading = true;
@@ -34,7 +34,9 @@ export class LoginComponent {
 
         },
         error: (err) => {
-          console.log("error")
+          console.log(err)
+          this.ErrorMessage=err.error.message
+          this.isLoading=false
 
         },
         complete: () => {
