@@ -10,15 +10,25 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class AddTokenHeaderInterceptor implements HttpInterceptor {
 
-  headerToken:any={
-    'token':localStorage.getItem('userToken')
-  }
   constructor() {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    let updatedRequest=request.clone({
-      setHeaders:this.headerToken
-    })
+    // Check if 'userToken' exists in localStorage
+    const userToken = localStorage.getItem('userToken');
+
+    // Create an empty header object
+    let headerToken: { [key: string]: string } = {};
+
+    // If 'userToken' exists, set it in the header
+    if (userToken) {
+      headerToken['token'] = userToken;
+    }
+
+    // Clone the request with the updated headers
+    let updatedRequest = request.clone({
+      setHeaders: headerToken
+    });
+
     return next.handle(updatedRequest);
   }
 }

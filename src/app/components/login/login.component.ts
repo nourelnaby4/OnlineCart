@@ -34,9 +34,8 @@ export class LoginComponent {
 
         },
         error: (err) => {
-          console.log("error"),
-            this.isLoading = false,
-            this.ErrorMessage = err.error.message
+          console.log("error")
+
         },
         complete: () => {
           console.log("success"),
