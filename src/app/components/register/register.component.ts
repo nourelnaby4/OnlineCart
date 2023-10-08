@@ -55,7 +55,7 @@ export class RegisterComponent implements OnInit {
 
         },
         complete: () => {
-          console.log("Register is Success"),
+          console.log(" Success"),
             this.isLoading = false
         },
       });
