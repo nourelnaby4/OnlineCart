@@ -1,3 +1,11 @@
 .nav-link:hover{
   font-weight: 570;
 }
+.scrolled {
+  background-color: #f8f8f8; /* New background color on scroll */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Enhanced shadow on scroll */
+}
+
+.scrolled .nav-link {
+  color: #555; /* New color for links on scroll */
+}

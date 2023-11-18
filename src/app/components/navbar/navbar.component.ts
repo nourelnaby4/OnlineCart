@@ -16,6 +16,13 @@ export class NavbarComponent implements OnInit {
   isLogin: boolean = false;
   constructor(private _auth: AuthService, private _router: Router,private _cartService:CartService) {
   }
+  isNavbarScrolled: boolean = false;
+
+
+  onWindowScroll() {
+    const offset = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    this.isNavbarScrolled = offset > 50;
+  }
 
   cartCount: number = 0;
   ngOnInit(): void {
@@ -39,6 +46,8 @@ export class NavbarComponent implements OnInit {
         this._cartService.cartItemCount.next(this.cartCount)
       }
     })
+
+
     // this._cartService.getUserLogged().subscribe({
     //   next: (reponse) => { this.cartCount = reponse.numOfCartItems,
     //   this._cartService.cartItemCount.next(this.cartCount),
